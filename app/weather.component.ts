@@ -21,13 +21,16 @@ import { Weather } from './weather';
 export class WeatherComponent{
 
   _weather = new Weather();
+
   constructor(
     private _weatherService: WeatherService
   ) { }
 
-
+  getImageUrl(code){
+    return this._weatherService.getImageUrlByCode(code);
+  }
   getWeather(){
     this._weatherService.getCurrentWeather("서울", "양천구", "신정동")
-    .subscribe((weather) => this._weather = weather);
+    .subscribe((weather) => {console.log(weather); this._weather = weather});
   }
 }
