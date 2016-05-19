@@ -8,7 +8,7 @@ import { Weather } from './weather';
   selector: 'my-weather',
   template: `
     <h1> This is My Weather </h1>
-    <input type="button" value="정보 가져오기" (click)="_weather = getWeather()">
+    <input type="button" value="정보 가져오기" (click)="getWeather()">
     <my-weather-detail [weather]="_weather"></my-weather-detail>
 
   `,
@@ -20,22 +20,14 @@ import { Weather } from './weather';
 
 export class WeatherComponent{
 
-  _weather: Weather = new Weather();
-
+  _weather = new Weather();
   constructor(
     private _weatherService: WeatherService
   ) { }
 
+
   getWeather(){
     this._weatherService.getCurrentWeather("서울", "양천구", "신정동")
-    .subscribe(function(weather){
-      return weather;
-    }, function(error){
-      
-    });
-  }
-
-  onClick(){
-
+    .subscribe((weather) => this._weather = weather);
   }
 }

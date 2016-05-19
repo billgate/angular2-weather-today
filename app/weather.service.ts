@@ -8,7 +8,7 @@ import { Weather } from './weather';
 
 @Injectable()
 export class WeatherService{
-    _weather    : Weather;
+    _weather    ;
     _headers    : Headers;
     _weatherUrl : string = "http://apis.skplanetx.com/weather/current/minutely";
     _appKey     : string = "a56cde6c-aa0f-346f-89b4-749ac232a710";
@@ -22,6 +22,7 @@ export class WeatherService{
 
     getCurrentWeather(city, county, village){
       let searchParams = new URLSearchParams();
+      this._weather = "fcu";
 
       searchParams.set("version", "1");
       searchParams.set("city",    city);
