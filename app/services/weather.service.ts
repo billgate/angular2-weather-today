@@ -8,14 +8,13 @@ import { Weather } from '../models/weather';
 
 @Injectable()
 export class WeatherService{
-    _weather    ;
-    _headers    : Headers;
-    _weatherUrl : string = "http://apis.skplanetx.com/weather/current/minutely";
-    _appKey     : string = "a56cde6c-aa0f-346f-89b4-749ac232a710";
+    headers    : Headers;
+    weatherUrl : string = "http://apis.skplanetx.com/weather/current/minutely";
+    appKey     : string = "a56cde6c-aa0f-346f-89b4-749ac232a710";
 
-    _weatherImgSrc : string = "/resources/img/weather/";
+    weatherImgSrc : string = "/resources/img/weather/";
 
-    _weatherMap : Object = {
+    weatherMap : Object = {
       "SKY_A00" : { "day" : "38", "night": "38" },
       "SKY_A01" : { "day" : "01", "night": "08"  },
       "SKY_A02" : { "day" : "02", "night": "09"  },
@@ -31,13 +30,13 @@ export class WeatherService{
       "SKY_A12" : { "day" : "26", "night": "26" },
       "SKY_A13" : { "day" : "27", "night": "27" },
       "SKY_A14" : { "day" : "28", "night": "28" },
-
     };
+
     constructor(
       private http: Http
     ) {
-      this._headers = new Headers();
-      this._headers.append('appKey', this._appKey);
+      this.headers = new Headers();
+      this.headers.append('appKey', this.appKey);
     }
 
     getCurrentWeather(city, county, village){
@@ -48,7 +47,7 @@ export class WeatherService{
       searchParams.set("county", county);
       searchParams.set("village", village);
 
-      return this.http.get(this._weatherUrl, {headers: this._headers, search: searchParams })
+      return this.http.get(this.weatherUrl, {headers: this.headers, search: searchParams })
         .map(this.extractData)
         .catch(this.errorHandle);
 
@@ -79,7 +78,7 @@ export class WeatherService{
       }
 
       if(code !== undefined)
-        return this._weatherImgSrc + this._weatherMap[code][dayOrNight] + ".png";
+        return this.weatherImgSrc + this.weatherMap[code][dayOrNight] + ".png";
       else
         return null;
     }

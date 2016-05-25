@@ -28,10 +28,10 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
             WeatherService = (function () {
                 function WeatherService(http) {
                     this.http = http;
-                    this._weatherUrl = "http://apis.skplanetx.com/weather/current/minutely";
-                    this._appKey = "a56cde6c-aa0f-346f-89b4-749ac232a710";
-                    this._weatherImgSrc = "/resources/img/weather/";
-                    this._weatherMap = {
+                    this.weatherUrl = "http://apis.skplanetx.com/weather/current/minutely";
+                    this.appKey = "a56cde6c-aa0f-346f-89b4-749ac232a710";
+                    this.weatherImgSrc = "/resources/img/weather/";
+                    this.weatherMap = {
                         "SKY_A00": { "day": "38", "night": "38" },
                         "SKY_A01": { "day": "01", "night": "08" },
                         "SKY_A02": { "day": "02", "night": "09" },
@@ -48,8 +48,8 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
                         "SKY_A13": { "day": "27", "night": "27" },
                         "SKY_A14": { "day": "28", "night": "28" },
                     };
-                    this._headers = new http_1.Headers();
-                    this._headers.append('appKey', this._appKey);
+                    this.headers = new http_1.Headers();
+                    this.headers.append('appKey', this.appKey);
                 }
                 WeatherService.prototype.getCurrentWeather = function (city, county, village) {
                     var searchParams = new http_1.URLSearchParams();
@@ -57,7 +57,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
                     searchParams.set("city", city);
                     searchParams.set("county", county);
                     searchParams.set("village", village);
-                    return this.http.get(this._weatherUrl, { headers: this._headers, search: searchParams })
+                    return this.http.get(this.weatherUrl, { headers: this.headers, search: searchParams })
                         .map(this.extractData)
                         .catch(this.errorHandle);
                 };
@@ -80,7 +80,7 @@ System.register(['angular2/core', 'angular2/http', 'rxjs/Observable', 'rxjs/Rx']
                         code = c;
                     }
                     if (code !== undefined)
-                        return this._weatherImgSrc + this._weatherMap[code][dayOrNight] + ".png";
+                        return this.weatherImgSrc + this.weatherMap[code][dayOrNight] + ".png";
                     else
                         return null;
                 };

@@ -30,20 +30,28 @@ System.register(['angular2/core', '../services/weather.service', './weather-deta
             WeatherComponent = (function () {
                 function WeatherComponent(_weatherService) {
                     this._weatherService = _weatherService;
-                    this._weather = new weather_1.Weather();
+                    this.weather = new weather_1.Weather();
+                    this.city = "서울";
+                    this.county = "양천구";
+                    this.village = "신정동";
                 }
+                /* 양방향 ngModel 사용시 한글 문제 있어서 onKeydown 으로 대체 */
+                WeatherComponent.prototype.onKeydownCity = function (event) { this.city = event.target.value; };
+                WeatherComponent.prototype.onKeydownCounty = function (event) { this.county = event.target.value; };
+                WeatherComponent.prototype.onKeydownVillage = function (event) { this.village = event.target.value; };
+                WeatherComponent.prototype.onSubmit = function () {
+                    var _this = this;
+                    console.log(this.city + "/" + this.county + "/" + this.village);
+                    this._weatherService.getCurrentWeather(this.city, this.county, this.village)
+                        .subscribe(function (weather) { console.log(weather); _this.weather = weather; }, function (error) { alert(error.message); console.log(error); });
+                };
                 WeatherComponent.prototype.getImageUrl = function (code) {
                     return this._weatherService.getImageUrlByCode(code);
-                };
-                WeatherComponent.prototype.getWeather = function () {
-                    var _this = this;
-                    this._weatherService.getCurrentWeather("서울", "양천구", "신정동")
-                        .subscribe(function (weather) { console.log(weather); _this._weather = weather; });
                 };
                 WeatherComponent = __decorate([
                     core_1.Component({
                         selector: 'my-weather',
-                        template: "\n    <h1> This is My Weather </h1>\n    <input type=\"button\" value=\"\uC815\uBCF4 \uAC00\uC838\uC624\uAE30\" (click)=\"getWeather()\">\n    <my-weather-detail [weather]=\"_weather\"></my-weather-detail>\n\n  ",
+                        template: "\n    <div class=\"container\" style=\"text-align:center;margin-top:20px;\">\n      <form (ngSubmit)=\"onSubmit()\" #thisForm>\n        <div class=\"form-group form-inline\">\n          <label class=\"form-control-label\" for=\"city\">\uC2DC</label>\n          <input type=\"text\" class=\"form-control\" (keydown)=\"onKeydownCity($event)\" [value]=\"city\" />\n        </div>\n        <div class=\"form-group form-inline\">\n          <label class=\"form-control-label\"  for=\"county\">\uAD6C</label>\n          <input type=\"text\" class=\"form-control\" (keydown)=\"onKeydownCounty($event)\" [value]=\"county\" />\n        </div>\n        <div class=\"form-group form-inline\">\n          <label class=\"form-control-label\"  for=\"village\">\uB3D9</label>\n          <input type=\"text\" class=\"form-control\"(keydown)=\"onKeydownVillage($event)\"  [value]=\"village\" />\n        </div>\n        <div class=\"form-group form-inline\">\n          <input type=\"submit\" class=\"btn btn-default\" value=\"\uC815\uBCF4 \uAC00\uC838\uC624\uAE30\">\n        </div>\n      </form>\n      <my-weather-detail [weather]=\"weather\"></my-weather-detail>\n    </div>\n  ",
                         directives: [
                             weather_detail_component_1.WeatherDetailComponent
                         ]

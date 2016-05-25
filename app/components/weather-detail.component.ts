@@ -6,8 +6,7 @@ import { WeatherService } from '../services/weather.service';
 @Component({
   selector: 'my-weather-detail',
   template: `
-    <h3>This is weather detail component</h3>
-    <div *ngIf="weather.sky.name !== undefined">
+    <div *ngIf="weather.sky.name !== undefined" style="text-align:center;">
       <div>
         <img [src]="getWeatherImage(weather.sky.code)" />
       </div>
@@ -22,7 +21,6 @@ export class WeatherDetailComponent{
   weather;
   @Input()
   imageUrl : string;
-
 
   constructor(
     private weatherService : WeatherService

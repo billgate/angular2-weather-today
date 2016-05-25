@@ -39,7 +39,7 @@ System.register(['angular2/core', '../services/weather.service'], function(expor
                 WeatherDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'my-weather-detail',
-                        template: "\n    <h3>This is weather detail component</h3>\n    <div *ngIf=\"weather.sky.name !== undefined\">\n      <div>\n        <img [src]=\"getWeatherImage(weather.sky.code)\" />\n      </div>\n      {{ weather.station.name }} / {{ weather.sky.name }} / {{ weather.temperature.tc  }} \uB3C4\n    </div>\n  "
+                        template: "\n    <div *ngIf=\"weather.sky.name !== undefined\" style=\"text-align:center;\">\n      <div>\n        <img [src]=\"getWeatherImage(weather.sky.code)\" />\n      </div>\n      {{ weather.station.name }} / {{ weather.sky.name }} / {{ weather.temperature.tc  }} \uB3C4\n    </div>\n  "
                     }), 
                     __metadata('design:paramtypes', [weather_service_1.WeatherService])
                 ], WeatherDetailComponent);

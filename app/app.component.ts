@@ -7,7 +7,6 @@ import { WeatherService } from './services/weather.service';
 @Component({
   selector: 'my-app',
   template: `
-    <h1>This is App Component </h1>
     <my-weather></my-weather>
   `,
 
