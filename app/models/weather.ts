@@ -4,8 +4,9 @@ export class Weather {
     this.sky = { name: <string> undefined };
     this.temperature = { tc: <string> undefined };
   }
-  station: { name: string };
-  sky: {name: string};
-  temperature: {tc:string};
-  timeObservation: Date;
+  sky : {name: string};
+  station : { name: string };
+  huminity : string;
+  temperature : {tc:string};
+  timeObservation : Date;
 }

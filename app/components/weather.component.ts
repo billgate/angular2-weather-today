@@ -8,8 +8,8 @@ import { Weather } from '../models/weather';
 @Component({
   selector: 'my-weather',
   template: `
-    <div class="container" style="text-align:center;margin-top:20px;">
-      <form (ngSubmit)="onSubmit()" #thisForm>
+    <div class="container" style="margin-top:20px;">
+      <form (ngSubmit)="onSubmit()" style="text-align:center;">
         <div class="form-group form-inline">
           <label class="form-control-label" for="city">시</label>
           <input type="text" class="form-control" (keydown)="onKeydownCity($event)" [value]="city" />
@@ -39,10 +39,9 @@ export class WeatherComponent{
 
   weather = new Weather();
 
-
-  city : string = "서울";
-  county : string = "양천구";
-  village : string = "신정동";
+  city : string     = "서울";
+  county : string   = "양천구";
+  village : string  = "신정동";
 
   constructor(
     private _weatherService: WeatherService
@@ -54,7 +53,6 @@ export class WeatherComponent{
   onKeydownVillage(event) { this.village = event.target.value; }
 
   onSubmit(){
-    console.log(this.city + "/" + this.county + "/" + this.village);
     this._weatherService.getCurrentWeather(this.city, this.county, this.village)
     .subscribe(
       (weather) => { console.log(weather); this.weather = weather; },
