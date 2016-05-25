@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from 'angular2/core';
 
-import { Weather } from './weather';
-import { WeatherService } from './weather.service';
+import { Weather } from '../models/weather';
+import { WeatherService } from '../services/weather.service';
 
 @Component({
   selector: 'my-weather-detail',

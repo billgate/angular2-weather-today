@@ -1,8 +1,8 @@
 import { Component } from 'angular2/core';
 
-import { WeatherService } from './weather.service';
+import { WeatherService } from '../services/weather.service';
 import { WeatherDetailComponent } from './weather-detail.component';
-import { Weather } from './weather';
+import { Weather } from '../models/weather';
 
 @Component({
   selector: 'my-weather',

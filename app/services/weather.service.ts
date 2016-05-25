@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 
-import { Weather } from './weather';
+import { Weather } from '../models/weather';
 
 @Injectable()
 export class WeatherService{
