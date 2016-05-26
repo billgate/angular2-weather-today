@@ -1,0 +1,23 @@
+<div *ngIf="weather.sky.name !== undefined" style="text-align:center;">
+  <div>
+    <img [src]="getWeatherImage(weather.sky.code)" />
+  </div>
+  <div>
+    <div class="form-group form-inline">
+      <label class="form-control-label" for="city">위치</label>
+      <p class="form-control-static">{{ weather.station.name }}</p>
+    </div>
+    <div class="form-group form-inline">
+      <label class="form-control-label" for="city">날씨</label>
+      <p class="form-control-static">{{ weather.sky.name }}</p>
+    </div>
+    <div class="form-group form-inline">
+      <label class="form-control-label" for="city">온도</label>
+      <p class="form-control-static">{{ weather.temperature.tc }}</p>
+    </div>
+    <div class="form-group form-inline">
+      <label class="form-control-label" for="city">측정시간</label>
+      <p class="form-control-static">{{ weather.timeObservation }}</p>
+    </div>
+  </div>
+</div>

@@ -44,13 +44,12 @@ export class WeatherService{
 
       searchParams.set("version", "1");
       searchParams.set("city",    city);
-      searchParams.set("county", county);
+      searchParams.set("county",  county);
       searchParams.set("village", village);
 
       return this.http.get(this.weatherUrl, {headers: this.headers, search: searchParams })
         .map(this.extractData)
         .catch(this.errorHandle);
-
     }
 
     extractData(res){

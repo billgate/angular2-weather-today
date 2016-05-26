@@ -32,14 +32,10 @@ System.register(['angular2/core', '../services/weather.service'], function(expor
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], WeatherDetailComponent.prototype, "weather", void 0);
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', String)
-                ], WeatherDetailComponent.prototype, "imageUrl", void 0);
                 WeatherDetailComponent = __decorate([
                     core_1.Component({
                         selector: 'my-weather-detail',
-                        template: "\n    <div *ngIf=\"weather.sky.name !== undefined\" style=\"text-align:center;\">\n      <div>\n        <img [src]=\"getWeatherImage(weather.sky.code)\" />\n      </div>\n      <div class=\"col-md-offset-4\">\n        <div class=\"form-group row\">\n          <label class=\"form-control-label col-sm-2\">\uC704\uCE58</label>\n          <div class=\"col-sm-3\">\n            <p class=\"form-control-static\">{{ weather.station.name }}</p>\n          </div>\n        </div>\n        <div class=\"form-group row\">\n          <label class=\"form-control-label col-sm-2\">\uB0A0\uC528</label>\n          <div class=\"col-sm-3\">\n            <p class=\"form-control-static\">{{ weather.sky.name }}</p>\n          </div>\n        </div>\n        <div class=\"form-group row\">\n          <label class=\"form-control-label col-sm-2\">\uC628\uB3C4</label>\n          <div class=\"col-sm-3\">\n            <p class=\"form-control-static\">{{ weather.temperature.tc }} \uB3C4</p>\n          </div>\n        </div>\n        <div class=\"form-group row\">\n          <label class=\"form-control-label col-sm-2\">\uCE21\uC815\uC2DC\uAC04</label>\n          <div class=\"col-sm-3\">\n            <p class=\"form-control-static\">{{ weather.timeObservation }}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  "
+                        templateUrl: 'app/templates/weather-detail.component.html'
                     }), 
                     __metadata('design:paramtypes', [weather_service_1.WeatherService])
                 ], WeatherDetailComponent);

@@ -7,32 +7,10 @@ import { Weather } from '../models/weather';
 
 @Component({
   selector: 'my-weather',
-  template: `
-    <div class="container" style="margin-top:20px;">
-      <form (ngSubmit)="onSubmit()" style="text-align:center;">
-        <div class="form-group form-inline">
-          <label class="form-control-label" for="city">시</label>
-          <input type="text" class="form-control" (keydown)="onKeydownCity($event)" [value]="city" />
-        </div>
-        <div class="form-group form-inline">
-          <label class="form-control-label"  for="county">구</label>
-          <input type="text" class="form-control" (keydown)="onKeydownCounty($event)" [value]="county" />
-        </div>
-        <div class="form-group form-inline">
-          <label class="form-control-label"  for="village">동</label>
-          <input type="text" class="form-control"(keydown)="onKeydownVillage($event)"  [value]="village" />
-        </div>
-        <div class="form-group form-inline">
-          <input type="submit" class="btn btn-default" value="정보 가져오기">
-        </div>
-      </form>
-      <my-weather-detail [weather]="weather"></my-weather-detail>
-    </div>
-  `,
+  templateUrl: 'app/templates/weather.component.html',
   directives: [
     WeatherDetailComponent
   ]
-
 })
 
 export class WeatherComponent{
@@ -55,7 +33,7 @@ export class WeatherComponent{
   onSubmit(){
     this._weatherService.getCurrentWeather(this.city, this.county, this.village)
     .subscribe(
-      (weather) => { console.log(weather); this.weather = weather; },
+      (weather) => { this.weather = weather; console.log(weather); },
       (error)   => { alert(error.message); console.log(error); }
     );
   }
